@@ -38,10 +38,6 @@ void udev_handler::pass_along_device(struct udev_device* new_dev) {
     phys = udev_device_get_sysattr_value(parent,"phys");
     parent = udev_device_get_parent(parent);
   }
-  if (phys && !strncmp(phys,"moltengamepad",13)) {
-    debug_print(DEBUG_VERBOSE, 1, "\tskipped because it was made by MoltenGamepad");
-    return; //Skip virtual devices we made
-  }
 
   //Give each manager a chance to claim the device.
   //Any deferred claims will be handled after going past every manager.
